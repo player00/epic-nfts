@@ -65,9 +65,20 @@ contract MyEpicNFT is ERC721URIStorage {
     ];
     event NewEpicNFTMinted(address sender, uint256 tokenId);
 
+    uint8 totalNFTLimit = 50;
+    uint8 mintedNFTCount;
+
 
     constructor() ERC721("SquareNFT", "SQUARE") {
         console.log("This is my NFT contract. Woah!");
+    }
+
+    function totalNFTMintedSoFar() public view returns(uint8) {
+        return mintedNFTCount;
+    }
+
+    function getCurrentNFTLimit() public view returns(uint8) {
+        return totalNFTLimit;
     }
 
     // I create a function to randomly pick a word from each array.
@@ -114,6 +125,7 @@ contract MyEpicNFT is ERC721URIStorage {
     }
 
     function makeAnEpicNFT() public {
+        require(mintedNFTCount < totalNFTLimit, "Oopsie, NFT limit is reached :)");
         uint256 newItemId = _tokenIds.current();
 
         // We go and randomly grab one word from each of the three arrays.
@@ -169,5 +181,6 @@ contract MyEpicNFT is ERC721URIStorage {
             msg.sender
         );
         emit NewEpicNFTMinted(msg.sender, newItemId);
+        mintedNFTCount++;
     }
 }
