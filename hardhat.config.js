@@ -22,11 +22,11 @@ module.exports = {
   networks: {
     goerli: {
       url: process.env.ALCHEMY_API_KEY_URL,
-      accounts: [process.env.GOERLI_PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
     },
     rinkeby: {
       url: process.env.ALCHEMY_API_KEY_URL_RINKEBY,
-      accounts: [process.env.GOERLI_PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
     }
   }
 };
