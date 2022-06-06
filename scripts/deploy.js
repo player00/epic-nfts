@@ -14,6 +14,11 @@ const main = async () => {
     // Wait for it to be mined.
     await txn.wait()
     console.log("Minted NFT #2")
+
+    total = await nftContract.totalNFTMintedSoFar();
+    limit = await nftContract.getCurrentNFTLimit();
+
+    console.log("Minted " + total + " NFTs out of " + limit)
   };
   
   const runMain = async () => {
